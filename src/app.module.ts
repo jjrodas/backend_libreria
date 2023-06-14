@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ClienteModule } from './cliente/cliente.module';
+import { LibroModule } from './libro/libro.module';
 
 @Module({
   imports: [ConfigModule.forRoot(),
@@ -19,6 +20,7 @@ import { ClienteModule } from './cliente/cliente.module';
     autoLoadEntities: true
   }),
   ClienteModule,
+  LibroModule,
   ],
   controllers: [AppController],
   providers: [AppService],
