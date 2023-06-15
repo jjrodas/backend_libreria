@@ -27,6 +27,13 @@ export class LibroService {
     return this.libroRepository.save({
       titulo: createLibroDto.titulo.trim(),
       autor: createLibroDto.autor.trim(),
+      fechaPublicacion: createLibroDto.fechaPublicacion,
+      editorial: createLibroDto.editorial.trim(),
+      idioma: createLibroDto.idioma.trim(),
+      tamañoArchivo: createLibroDto.tamañoArchivo.trim(),
+      numeroPaginas: createLibroDto.numeroPaginas,
+      precio: createLibroDto.precio,
+      stock: createLibroDto.stock
     });
   }
 
