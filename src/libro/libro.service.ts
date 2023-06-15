@@ -21,7 +21,7 @@ export class LibroService {
     });
 
     if (existe) {
-      throw new ConflictException(`El libro ${createLibroDto.titulo} ya existe.`);
+      throw new ConflictException(`El libro ya existe.`);
     }
 
     return this.libroRepository.save({
@@ -33,7 +33,7 @@ export class LibroService {
       tamañoArchivo: createLibroDto.tamañoArchivo.trim(),
       numeroPaginas: createLibroDto.numeroPaginas,
       precio: createLibroDto.precio,
-      stock: createLibroDto.stock
+      stock: createLibroDto.stock.trim()
     });
   }
 

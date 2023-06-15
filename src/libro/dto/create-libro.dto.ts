@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, IsDateString, IsDefined, IsNotEmpty, IsNumber, IsString, MaxLength } from "class-validator";
+import { IsDate, IsDateString, IsDefined, IsInt, IsNotEmpty, IsNumber, IsPositive, IsString, MaxLength } from "class-validator";
 
 export class CreateLibroDto {
     @ApiProperty()
@@ -38,10 +38,13 @@ export class CreateLibroDto {
 
     @ApiProperty()
     @IsNumber()
+    @IsInt({ message: 'El campo numeroPaginas solo acepta números enteros' })
+    @IsPositive({ message: 'El campo numeroPaginas no acepta números negativos.' })
     @IsNotEmpty({ message: 'El campo numeroPaginas no debe estar vacío' })
     readonly numeroPaginas: number;
 
     @ApiProperty()
+    @IsPositive({ message: 'El campo precio no acepta números negativos.' })
     @IsNumber()
     @IsNotEmpty({ message: 'El campo precio no debe estar vacío' })
     readonly precio: number;
