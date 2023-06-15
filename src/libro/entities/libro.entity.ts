@@ -11,7 +11,7 @@ export class LibroEntity {
     @Column({ length: 50 })
     autor: string;
 
-    @Column({ name: 'fecha_publicacion' })
+    @Column({ name: 'fecha_publicacion', type: 'date' })
     fechaPublicacion: Date;
 
     @Column({ length: 30 })
