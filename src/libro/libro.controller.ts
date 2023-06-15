@@ -17,13 +17,13 @@ export class LibroController {
   }
 
   @Get()
-  @ApiOkResponse({ type: LibroEntity })
+  @ApiOkResponse({ type: LibroEntity, isArray: true })
   findAll() {
     return this.libroService.findAll();
   }
 
   @Get(':id')
-  @ApiOkResponse({ type: LibroEntity, isArray: true })
+  @ApiOkResponse({ type: LibroEntity })
   findOne(@Param('id') id: string) {
     return this.libroService.findOne(+id);
   }
