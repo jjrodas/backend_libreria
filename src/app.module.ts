@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 import { ClienteModule } from './cliente/cliente.module';
 import { LibroModule } from './libro/libro.module';
 import { OrdenModule } from './orden/orden.module';
+import { UsuarioModule } from './usuario/usuario.module';
 
 @Module({
   imports: [ConfigModule.forRoot(),
@@ -23,6 +24,7 @@ import { OrdenModule } from './orden/orden.module';
   ClienteModule,
   LibroModule,
   OrdenModule,
+  UsuarioModule,
   ],
   controllers: [AppController],
   providers: [AppService],

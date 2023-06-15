@@ -2,7 +2,7 @@ import { ClienteEntity } from "src/cliente/entities/cliente.entity";
 import { LibroEntity } from "src/libro/entities/libro.entity";
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
-@Entity()
+@Entity('ordenes')
 export class OrdenEntity {
     @PrimaryGeneratedColumn({ name: 'id_orden' })
     id: number;
