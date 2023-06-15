@@ -1,5 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { OrdenEntity } from "src/orden/entities/orden.entity";
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity('clientes')
 export class ClienteEntity {
@@ -19,4 +20,7 @@ export class ClienteEntity {
 
     @UpdateDateColumn({ name: 'fecha_modificacion' })
     fechaModificacion: Date;
+
+    @OneToMany(() => OrdenEntity, (orden) => orden.cliente)
+    ordenes: OrdenEntity[];
 }
