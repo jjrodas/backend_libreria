@@ -27,10 +27,6 @@ export class LibroEntity {
     @Column({ length: 15 })
     idioma: string;
 
-    // @ApiProperty()
-    // @Column({ name: 'tamaño_archivo' })
-    // tamañoArchivo: string;
-
     @ApiProperty()
     @Column()
     isbn: string;

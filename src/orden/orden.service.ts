@@ -28,7 +28,7 @@ export class OrdenService {
       idCliente: createOrdenDto.idCliente,
       idLibro: createOrdenDto.idLibro,
       cantidad: createOrdenDto.cantidad,
-      precioUnitario: createOrdenDto.precioUnitario,
+      //precioUnitario: createOrdenDto.precioUnitario,
       totalVenta: createOrdenDto.totalVenta,
       fechaEmision: createOrdenDto.fechaEmision,
     });
@@ -36,8 +36,8 @@ export class OrdenService {
 
   async findAll(): Promise<OrdenEntity[]> {
     return this.ordenRepository.find({
-      relations: { cliente: true },
-      select: { id: true, idCliente: true, idLibro: true, precioUnitario: true, totalVenta: true, fechaEmision: true, cliente: { nombre: true } }
+      relations: { cliente: true, libro: true },
+      select: { id: true, idCliente: true, idLibro: true, totalVenta: true, fechaEmision: true, cliente: { nombre: true }, libro: { titulo: true, precio: true } }
     });
     // return this.ordenRepository.createQueryBuilder('orden')
     //   .innerJoin('orden.cliente', 'cliente')
@@ -47,8 +47,8 @@ export class OrdenService {
   }
 
   async findOne(id: number): Promise<OrdenEntity> {
-    const orden = await this.ordenRepository.findOne({ where: { id }, relations: { cliente: true },
-      select: { id: true, idCliente: true, idLibro: true, precioUnitario: true, totalVenta: true, fechaEmision: true, cliente: { nombre: true } } });
+    const orden = await this.ordenRepository.findOne({ where: { id }, relations: { cliente: true, libro: true },
+      select: { id: true, idCliente: true, idLibro: true, totalVenta: true, fechaEmision: true, cliente: { nombre: true }, libro: { titulo: true, precio: true } } });
 
     if (!orden) {
       throw new NotFoundException(`La orden ${id} no existe.`);
