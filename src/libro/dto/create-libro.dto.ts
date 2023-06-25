@@ -53,5 +53,13 @@ export class CreateLibroDto {
     @IsString({ message: 'El campo stock debe ser de tipo cadena.' })
     @IsNotEmpty({ message: 'El campo stock no debe estar vacío' })
     @MaxLength(15, { message: 'El campo stock no debe tener más de 15 caracteres.' })
-    readonly stock: string
+    readonly stock: string;
+
+    @ApiProperty()
+    @IsString({ message: 'El campo isbn debe ser de tipo cadena.' })
+    readonly isbn: string;
+
+    @ApiProperty()
+    @IsString({ message: 'El campo url debe ser de tipo cadena.' })
+    readonly url: string;
 }

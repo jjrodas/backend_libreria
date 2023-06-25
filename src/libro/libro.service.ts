@@ -33,7 +33,9 @@ export class LibroService {
       tamañoArchivo: createLibroDto.tamañoArchivo.trim(),
       numeroPaginas: createLibroDto.numeroPaginas,
       precio: createLibroDto.precio,
-      stock: createLibroDto.stock.trim()
+      stock: createLibroDto.stock.trim(),
+      isbn: createLibroDto.isbn.trim(),
+      url: createLibroDto.url.trim()
     });
   }
 
