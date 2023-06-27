@@ -28,7 +28,7 @@ export class OrdenService {
       idCliente: createOrdenDto.idCliente,
       idLibro: createOrdenDto.idLibro,
       cantidad: createOrdenDto.cantidad,
-      //precioUnitario: createOrdenDto.precioUnitario,
+      precioUnitario: createOrdenDto.precioUnitario,
       totalVenta: createOrdenDto.totalVenta,
       fechaEmision: createOrdenDto.fechaEmision,
     });

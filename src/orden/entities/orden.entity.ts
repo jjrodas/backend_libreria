@@ -16,8 +16,8 @@ export class OrdenEntity {
     @Column()
     cantidad: number;
 
-    // @Column({ name: 'precio_unitario' })
-    // precioUnitario: number;
+    @Column({ name: 'precio_unitario' })
+    precioUnitario: number;
 
     @Column({ name: 'total_venta' })
     totalVenta: number;

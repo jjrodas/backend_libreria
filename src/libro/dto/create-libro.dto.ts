@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, IsDateString, IsDefined, IsInt, IsNotEmpty, IsNumber, IsPositive, IsString, MaxLength } from "class-validator";
+import { IsDateString, IsDefined, IsInt, IsNotEmpty, IsNumber, IsPositive, IsString, MaxLength } from "class-validator";
 
 export class CreateLibroDto {
     @ApiProperty()
@@ -10,24 +10,24 @@ export class CreateLibroDto {
 
     @ApiProperty()
     @IsString({ message: 'El campo autor debe ser de tipo cadena.' })
-    @IsNotEmpty({ message: 'El campo autor no debe estar vacío' })
+    @IsNotEmpty({ message: 'El campo autor no debe estar vacío.' })
     @MaxLength(50, { message: 'El campo autor no debe tener más de 50 caracteres.' })
     readonly autor: string;
 
     @ApiProperty()
-    @IsDefined({ message: 'El campo fechaPublicacion debe estar definido' })
-    @IsDateString({}, { message: 'El campo fechaPublicacion debe ser de tipo fecha' })
+    @IsDefined({ message: 'El campo fechaPublicacion debe estar definido.' })
+    @IsDateString({}, { message: 'El campo fechaPublicacion debe ser de tipo fecha.' })
     readonly fechaPublicacion: Date;
 
     @ApiProperty()
     @IsString({ message: 'El campo editorial debe ser de tipo cadena.' })
-    @IsNotEmpty({ message: 'El campo editorial no debe estar vacío' })
+    @IsNotEmpty({ message: 'El campo editorial no debe estar vacío.' })
     @MaxLength(30, { message: 'El campo editorial no debe tener más de 30 caracteres.' })
     readonly editorial: string;
 
     @ApiProperty()
     @IsString({ message: 'El campo idioma debe ser de tipo cadena.' })
-    @IsNotEmpty({ message: 'El campo idioma no debe estar vacío' })
+    @IsNotEmpty({ message: 'El campo idioma no debe estar vacío.' })
     @MaxLength(15, { message: 'El campo idioma no debe tener más de 15 caracteres.' })
     readonly idioma: string;
 
@@ -35,26 +35,28 @@ export class CreateLibroDto {
     @IsNumber()
     @IsInt({ message: 'El campo numeroPaginas solo acepta números enteros' })
     @IsPositive({ message: 'El campo numeroPaginas no acepta números negativos.' })
-    @IsNotEmpty({ message: 'El campo numeroPaginas no debe estar vacío' })
+    @IsNotEmpty({ message: 'El campo numeroPaginas no debe estar vacío.' })
     readonly numeroPaginas: number;
 
     @ApiProperty()
     @IsPositive({ message: 'El campo precio no acepta números negativos.' })
-    @IsNumber()
-    @IsNotEmpty({ message: 'El campo precio no debe estar vacío' })
+    @IsNumber({}, { message: 'El campo precio debe ser de tipo número.' })
+    @IsNotEmpty({ message: 'El campo precio no debe estar vacío.' })
     readonly precio: number;
 
     @ApiProperty()
-    @IsString({ message: 'El campo stock debe ser de tipo cadena.' })
-    @IsNotEmpty({ message: 'El campo stock no debe estar vacío' })
-    @MaxLength(15, { message: 'El campo stock no debe tener más de 15 caracteres.' })
-    readonly stock: string;
+    @IsNumber({}, { message: 'El campo stock debe ser de tipo número.' })
+    @IsPositive({ message: 'El campo stock no acepta números negativos.' })
+    @IsNotEmpty({ message: 'El campo stock no debe estar vacío.' })
+    readonly stock: number;
 
     @ApiProperty()
     @IsString({ message: 'El campo isbn debe ser de tipo cadena.' })
+    @IsNotEmpty({ message: 'El campo isbn no debe estar vacío.' })
     readonly isbn: string;
 
     @ApiProperty()
     @IsString({ message: 'El campo url debe ser de tipo cadena.' })
+    @IsNotEmpty({ message: 'El url no debe estar vacío.' })
     readonly url: string;
 }

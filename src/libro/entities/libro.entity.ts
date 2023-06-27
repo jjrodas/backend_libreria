@@ -44,8 +44,8 @@ export class LibroEntity {
     precio: number;
 
     @ApiProperty()
-    @Column({ length: 15 })
-    stock: string;
+    @Column()
+    stock: number;
 
     @CreateDateColumn({ name: 'fecha_creacion' })
     fechaCreacion: Date;

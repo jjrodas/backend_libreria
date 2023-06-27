@@ -32,7 +32,7 @@ export class LibroService {
       idioma: createLibroDto.idioma.trim(),
       numeroPaginas: createLibroDto.numeroPaginas,
       precio: createLibroDto.precio,
-      stock: createLibroDto.stock.trim(),
+      stock: createLibroDto.stock,
       isbn: createLibroDto.isbn.trim(),
       url: createLibroDto.url.trim()
     });

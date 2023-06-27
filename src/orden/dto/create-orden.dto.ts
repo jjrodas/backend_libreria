@@ -23,14 +23,14 @@ export class CreateOrdenDto {
     @IsNotEmpty({ message: 'El campo cantidad no debe estar vacío.' })
     readonly cantidad: number;
 
-    // @ApiProperty()
-    // @IsPositive({ message: 'El campo precioUnitario debe ser un número positivo.' })
-    // @IsNumber({}, { message: 'El campo precioUnitario debe ser de tipo número' })
-    // @IsNotEmpty({ message: 'El campo precioUnitario no debe estar vacío.' })
-    // readonly precioUnitario: number;
+    @ApiProperty()
+    @IsPositive({ message: 'El campo precioUnitario debe ser un número positivo.' })
+    @IsNumber({}, { message: 'El campo precioUnitario debe ser de tipo número' })
+    @IsNotEmpty({ message: 'El campo precioUnitario no debe estar vacío.' })
+    readonly precioUnitario: number;
 
     @ApiProperty()
-    //@IsPositive({ message: 'El campo totalVenta debe ser un número positivo.' })
+    @IsPositive({ message: 'El campo totalVenta debe ser un número positivo.' })
     @IsNumber({}, { message: 'El campo totalVenta debe ser de tipo número' })
     @IsNotEmpty({ message: 'El campo totalVenta no debe estar vacío.' })
     readonly totalVenta: number;
