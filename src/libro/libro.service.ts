@@ -30,7 +30,6 @@ export class LibroService {
       fechaPublicacion: createLibroDto.fechaPublicacion,
       editorial: createLibroDto.editorial.trim(),
       idioma: createLibroDto.idioma.trim(),
-      tamañoArchivo: createLibroDto.tamañoArchivo.trim(),
       numeroPaginas: createLibroDto.numeroPaginas,
       precio: createLibroDto.precio,
       stock: createLibroDto.stock.trim(),

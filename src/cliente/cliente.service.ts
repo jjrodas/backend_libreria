@@ -27,6 +27,7 @@ export class ClienteService {
     return this.clienteRepository.save({
       nombre: createClienteDto.nombre.trim(),
       email: createClienteDto.email.trim(),
+      telefono: createClienteDto.telefono
     });
   }
 

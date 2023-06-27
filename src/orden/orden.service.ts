@@ -39,17 +39,10 @@ export class OrdenService {
       relations: { cliente: true, libro: true },
       select: { id: true, idCliente: true, idLibro: true, totalVenta: true, fechaEmision: true, cliente: { nombre: true }, libro: { titulo: true, precio: true } }
     });
-    // return this.ordenRepository.createQueryBuilder('orden')
-    //   .innerJoin('orden.cliente', 'cliente')
-    //   .innerJoin('orden.libro', 'libro')
-    //   .select(['orden.id', 'orden.totalVenta'])
-    //   .getMany();
   }
 
   async findOne(id: number): Promise<OrdenEntity> {
-    const orden = await this.ordenRepository.findOne({ where: { id }, relations: { cliente: true, libro: true },
-      select: { id: true, idCliente: true, idLibro: true, totalVenta: true, fechaEmision: true, cliente: { nombre: true }, libro: { titulo: true, precio: true } } });
-
+    const orden = await this.ordenRepository.findOne({ where: { id }, relations: { cliente: true, libro: true } });
     if (!orden) {
       throw new NotFoundException(`La orden ${id} no existe.`);
     }

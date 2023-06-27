@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsEmail, IsNotEmpty, IsString, MaxLength } from "class-validator";
+import { IsEmail, IsNotEmpty, IsNumber, IsString, MaxLength } from "class-validator";
 
 export class CreateClienteDto {
     @ApiProperty()
@@ -11,6 +11,11 @@ export class CreateClienteDto {
     @ApiProperty()
     @IsEmail({}, { message: 'Introduzca un email válido.' })
     @IsNotEmpty({ message: 'El campo email no debe estar vacío' })
-    @MaxLength(40, { message: 'El campo emali no debe tener más de 40 caracteres.' })
+    @MaxLength(40, { message: 'El campo email no debe tener más de 40 caracteres.' })
     readonly email: string;
+
+    @ApiProperty()
+    @IsNumber({}, { message: 'El campo teléfono debe ser de tipo número.' })
+    @IsNotEmpty({ message: 'El campo teléfono no debe estar vacío.' })
+    readonly telefono: number;
 }

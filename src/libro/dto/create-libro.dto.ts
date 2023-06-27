@@ -32,11 +32,6 @@ export class CreateLibroDto {
     readonly idioma: string;
 
     @ApiProperty()
-    @IsString({ message: 'El campo tamañoArchivo debe ser de tipo cadena.' })
-    @IsNotEmpty({ message: 'El campo tamañoArchivo no debe estar vacío' })
-    readonly tamañoArchivo: string;
-
-    @ApiProperty()
     @IsNumber()
     @IsInt({ message: 'El campo numeroPaginas solo acepta números enteros' })
     @IsPositive({ message: 'El campo numeroPaginas no acepta números negativos.' })

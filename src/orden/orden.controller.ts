@@ -1,5 +1,5 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
-import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { CreateOrdenDto } from './dto/create-orden.dto';
 import { UpdateOrdenDto } from './dto/update-orden.dto';
 import { OrdenEntity } from './entities/orden.entity';
@@ -11,6 +11,7 @@ export class OrdenController {
   constructor(private readonly ordenService: OrdenService) { }
 
   @Post()
+  @ApiCreatedResponse({ type: OrdenEntity })
   create(@Body() createOrdenDto: CreateOrdenDto) {
     return this.ordenService.create(createOrdenDto);
   }

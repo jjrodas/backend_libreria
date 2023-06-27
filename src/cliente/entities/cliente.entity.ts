@@ -15,6 +15,10 @@ export class ClienteEntity {
     @Column({ length: 40 })
     email: string;
 
+    @ApiProperty()
+    @Column()
+    telefono: number;
+
     @CreateDateColumn({ name: 'fecha_creacion' })
     fechaCreacion: Date;
 
