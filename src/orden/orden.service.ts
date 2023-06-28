@@ -1,4 +1,8 @@
-import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import {
+  ConflictException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateOrdenDto } from './dto/create-orden.dto';
@@ -10,11 +14,9 @@ export class OrdenService {
   constructor(
     @InjectRepository(OrdenEntity)
     private ordenRepository: Repository<OrdenEntity>,
-  ) { }
+  ) {}
 
-  async create(
-    createOrdenDto: CreateOrdenDto,
-  ): Promise<OrdenEntity> {
+  async create(createOrdenDto: CreateOrdenDto): Promise<OrdenEntity> {
     const existe = await this.ordenRepository.findOneBy({
       idCliente: createOrdenDto.idCliente,
       idLibro: createOrdenDto.idLibro,
@@ -37,12 +39,27 @@ export class OrdenService {
   async findAll(): Promise<OrdenEntity[]> {
     return this.ordenRepository.find({
       relations: { cliente: true, libro: true },
-      select: { id: true, idCliente: true, idLibro: true, totalVenta: true, fechaEmision: true, cliente: { nombre: true }, libro: { titulo: true, precio: true } }
+      select: {
+        id: true,
+        idCliente: true,
+        idLibro: true,
+        cantidad: true,
+        precioUnitario: true,
+        totalVenta: true,
+        fechaEmision: true,
+        fechaCreacion: true,
+        fechaModificacion: true,
+        cliente: { nombre: true },
+        libro: { titulo: true, precio: true },
+      },
     });
   }
 
   async findOne(id: number): Promise<OrdenEntity> {
-    const orden = await this.ordenRepository.findOne({ where: { id }, relations: { cliente: true, libro: true } });
+    const orden = await this.ordenRepository.findOne({
+      where: { id },
+      relations: { cliente: true, libro: true },
+    });
     if (!orden) {
       throw new NotFoundException(`La orden con el id: ${id} no existe.`);
     }
