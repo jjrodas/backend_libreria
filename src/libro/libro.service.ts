@@ -46,7 +46,7 @@ export class LibroService {
     const libro = await this.libroRepository.findOneBy({ id });
 
     if (!libro) {
-      throw new NotFoundException(`El libro ${id} no existe.`);
+      throw new NotFoundException(`El libro con el id: ${id} no existe.`);
     }
 
     return libro;
@@ -56,7 +56,7 @@ export class LibroService {
     const libro = await this.libroRepository.findOneBy({ id });
 
     if (!libro) {
-      throw new NotFoundException(`El libro ${id} no existe.`);
+      throw new NotFoundException(`El libro con el id: ${id} no existe.`);
     }
 
     const libroUpdate = Object.assign(libro, updateLibroDto);
@@ -67,7 +67,7 @@ export class LibroService {
     const existe = await this.libroRepository.findOneBy({ id });
 
     if (!existe) {
-      throw new NotFoundException(`El libro ${id} no existe.`);
+      throw new NotFoundException(`El libro con el id: ${id} no existe.`);
     }
 
     return this.libroRepository.delete(id);

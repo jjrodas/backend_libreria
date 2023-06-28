@@ -1,4 +1,4 @@
-import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateUsuarioDto } from './dto/create-usuario.dto';
@@ -23,10 +23,13 @@ export class UsuarioService {
       throw new ConflictException(`El usuario ${createUsuarioDto.nombre} ya existe.`);
     }
 
-    return this.usuarioRepository.save({
-      nombre: createUsuarioDto.nombre.trim(),
-      clave: createUsuarioDto.clave.trim(),
-    });
+    const usuario: UsuarioEntity = new UsuarioEntity();
+    usuario.nombre = createUsuarioDto.nombre.trim();
+    usuario.clave = process.env.DEFAULT_PASSWORD;
+
+    const usuarioDB = await this.usuarioRepository.save(usuario);
+    delete usuarioDB.clave;
+    return usuarioDB;
   }
 
   async findAll(): Promise<UsuarioEntity[]> {
@@ -37,7 +40,7 @@ export class UsuarioService {
     const usuario = await this.usuarioRepository.findOneBy({ id });
 
     if (!usuario) {
-      throw new NotFoundException(`El usuario ${id} no existe.`);
+      throw new NotFoundException(`El usuario con el id: ${id} no existe.`);
     }
 
     return usuario;
@@ -47,7 +50,7 @@ export class UsuarioService {
     const usuario = await this.usuarioRepository.findOneBy({ id });
 
     if (!usuario) {
-      throw new NotFoundException(`El usuario ${id} no existe.`);
+      throw new NotFoundException(`El usuario con el id: ${id} no existe.`);
     }
 
     const usuarioUpdate = Object.assign(usuario, updateUsuarioDto);
@@ -58,9 +61,25 @@ export class UsuarioService {
     const existe = await this.usuarioRepository.findOneBy({ id });
 
     if (!existe) {
-      throw new NotFoundException(`El usuario ${id} no existe.`);
+      throw new NotFoundException(`El usuario con el id: ${id} no existe.`);
     }
 
     return this.usuarioRepository.delete(id);
+  }
+
+  async validate(nombre: string, clave: string): Promise<UsuarioEntity> {
+    const usuarioOk = await this.usuarioRepository.findOne({
+      where: { nombre },
+      select: ['id', 'nombre', 'clave'],
+    });
+
+    if (!usuarioOk) throw new NotFoundException('Usuario inexistente');
+
+    if (!(await usuarioOk?.validatePassword(clave))) {
+      throw new UnauthorizedException('Clave incorrecta');
+    }
+
+    delete usuarioOk.clave;
+    return usuarioOk;
   }
 }

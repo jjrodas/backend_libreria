@@ -39,7 +39,7 @@ export class ClienteService {
     const cliente = await this.clienteRepository.findOneBy({ id });
 
     if (!cliente) {
-      throw new NotFoundException(`El cliente ${id} no existe.`);
+      throw new NotFoundException(`El cliente con el id: ${id} no existe.`);
     }
 
     return cliente;
@@ -49,7 +49,7 @@ export class ClienteService {
     const cliente = await this.clienteRepository.findOneBy({ id });
 
     if (!cliente) {
-      throw new NotFoundException(`El cliente ${id} no existe.`);
+      throw new NotFoundException(`El cliente con el id: ${id} no existe.`);
     }
 
     const clienteUpdate = Object.assign(cliente, updateClienteDto);
@@ -60,7 +60,7 @@ export class ClienteService {
     const existe = await this.clienteRepository.findOneBy({ id });
 
     if (!existe) {
-      throw new NotFoundException(`El cliente ${id} no existe.`);
+      throw new NotFoundException(`El cliente con el id: ${id} no existe.`);
     }
 
     return this.clienteRepository.delete(id);

@@ -44,7 +44,7 @@ export class OrdenService {
   async findOne(id: number): Promise<OrdenEntity> {
     const orden = await this.ordenRepository.findOne({ where: { id }, relations: { cliente: true, libro: true } });
     if (!orden) {
-      throw new NotFoundException(`La orden ${id} no existe.`);
+      throw new NotFoundException(`La orden con el id: ${id} no existe.`);
     }
 
     return orden;
@@ -54,7 +54,7 @@ export class OrdenService {
     const orden = await this.ordenRepository.findOneBy({ id });
 
     if (!orden) {
-      throw new NotFoundException(`La orden ${id} no existe.`);
+      throw new NotFoundException(`La orden con el id: ${id} no existe.`);
     }
 
     const ordenUpdate = Object.assign(orden, updateOrdenDto);
@@ -65,7 +65,7 @@ export class OrdenService {
     const existe = await this.ordenRepository.findOneBy({ id });
 
     if (!existe) {
-      throw new NotFoundException(`La orden ${id} no existe.`);
+      throw new NotFoundException(`La orden con el id: ${id} no existe.`);
     }
 
     return this.ordenRepository.delete(id);

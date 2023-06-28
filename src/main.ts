@@ -16,6 +16,7 @@ async function bootstrap() {
     .setDescription('CRUD base de datos librería laboratorio final de la materia SIS-257')
     .setVersion('1.0')
     //.addTag()
+    .addBearerAuth({ type: 'http', scheme: 'bearer', bearerFormat: 'JWT', in: 'header' })
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('apidoc', app, document);

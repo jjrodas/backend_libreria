@@ -1,15 +1,20 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
-import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, UseGuards } from '@nestjs/common';
+import { ApiBearerAuth, ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
+import { Public } from 'src/auth/decorators/auth-public.decorator';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { ClienteService } from './cliente.service';
 import { CreateClienteDto } from './dto/create-cliente.dto';
 import { UpdateClienteDto } from './dto/update-cliente.dto';
 import { ClienteEntity } from './entities/cliente.entity';
 
+@ApiBearerAuth()
+@UseGuards(JwtAuthGuard)
 @ApiTags('clientes')
 @Controller('clientes')
 export class ClienteController {
   constructor(private readonly clienteService: ClienteService) { }
 
+  @Public()
   @Post()
   @ApiCreatedResponse({ type: ClienteEntity })
   create(@Body() createClienteDto: CreateClienteDto) {
@@ -28,6 +33,7 @@ export class ClienteController {
     return this.clienteService.findOne(id);
   }
 
+  //@Public()
   @Patch(':id')
   @ApiOkResponse({ type: ClienteEntity })
   update(@Param('id', ParseIntPipe) id: number, @Body() updateClienteDto: UpdateClienteDto) {
