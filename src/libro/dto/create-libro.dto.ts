@@ -58,5 +58,6 @@ export class CreateLibroDto {
     @ApiProperty()
     @IsString({ message: 'El campo url debe ser de tipo cadena.' })
     @IsNotEmpty({ message: 'El url no debe estar vacío.' })
+    @MaxLength(500, { message:  'El campo url no debe tener más de 500 caracteres.'})
     readonly url: string;
 }

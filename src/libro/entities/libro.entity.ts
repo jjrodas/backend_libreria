@@ -8,11 +8,11 @@ export class LibroEntity {
     id: number;
 
     @ApiProperty()
-    @Column({ length: 60 })
+    @Column()
     titulo: string;
 
     @ApiProperty()
-    @Column({ length: 50 })
+    @Column()
     autor: string;
 
     @ApiProperty()
@@ -28,11 +28,11 @@ export class LibroEntity {
     idioma: string;
 
     @ApiProperty()
-    @Column()
+    @Column({ length: 30 })
     isbn: string;
 
     @ApiProperty()
-    @Column({ name: 'url_imagen' })
+    @Column({ name: 'url_imagen', length: 500 })
     url: string;
 
     @ApiProperty()
